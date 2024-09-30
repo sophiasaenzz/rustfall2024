@@ -1,5 +1,6 @@
 use std::io::{self, Write};
 use std::fs::{File, OpenOptions};
+use std::fs;
 
 
 struct Car {
@@ -25,6 +26,10 @@ fn reading_from_console() {
     //println!("Your car is a {} and the year is {}", car.model, car.year); 
     let mut file = OpenOptions::new().append(true).create(true).open("user_info.txt").unwrap();
     writeln!(file, "Your car is a {} and the year is {}", car.model, car.year).unwrap();
+
+    //print to the console the text in the file
+    let data = fs::read_to_string("/workspaces/rustfall2024/hello_world/user_info.txt").expect("Unable to read file");
+    println!("{}", data);
 }
 
 
